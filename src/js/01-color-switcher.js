@@ -5,22 +5,21 @@ const refs = {
     timeId: null,
 };
 
-const changeColorBtn = refs.startBtn.addEventListener('click', nextColor) => 
+refs.startBtn.addEventListener('click', () => {
     timerId = setInterval(() => {
-        nextColor();
-      }, 1000);
- 
-// const stopChangeBnt = refs.stopBtn.addEventListener('click', clearInterval) => 
-// clearInterval(timerId);
+        getRandomHexColor();
+        refs.startBtn.setAttribute('disabled', 'disabled');
+      refs.stopBtn.removeAttribute('disabled');
+      }, 1000);  
+});
 
-    
-
-
-function nextColor() {
-refs.bodyId.style.background = `${getRandomHexColor()}`;
-};
+refs.stopBtn.addEventListener("click", () => {
+    clearInterval(timerId);
+    refs.startBtn.removeAttribute('disabled');
+    refs.stopBtn.setAttribute('disabled', 'disabled')
+  });
 
 
 function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return refs.bodyId.style.background = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }

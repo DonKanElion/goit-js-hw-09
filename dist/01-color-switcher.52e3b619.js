@@ -509,17 +509,20 @@ const refs = {
     bodyId: document.querySelector("body"),
     timeId: null
 };
-const changeColorBtn = refs.startBtn.addEventListener("click", nextColor);
-timerId = setInterval(()=>{
-    nextColor();
-}, 1000);
-// const stopChangeBnt = refs.stopBtn.addEventListener('click', clearInterval) => 
-// clearInterval(timerId);
-function nextColor() {
-    refs.bodyId.style.background = `${getRandomHexColor()}`;
-}
+refs.startBtn.addEventListener("click", ()=>{
+    timerId = setInterval(()=>{
+        getRandomHexColor();
+        refs.startBtn.setAttribute("disabled", "disabled");
+        refs.stopBtn.removeAttribute("disabled");
+    }, 1000);
+});
+refs.stopBtn.addEventListener("click", ()=>{
+    clearInterval(timerId);
+    refs.startBtn.removeAttribute("disabled");
+    refs.stopBtn.setAttribute("disabled", "disabled");
+});
 function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return refs.bodyId.style.background = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 },{}]},["gzrwE","cYUEh"], "cYUEh", "parcelRequire7bc7")

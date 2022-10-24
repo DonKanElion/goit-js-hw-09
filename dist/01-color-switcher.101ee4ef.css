@@ -16,4 +16,16 @@ img {
   display: block;
 }
 
+body > button {
+  text-align: center;
+  cursor: pointer;
+  background-color: #e7e7e7;
+  border: 2px solid #40404080;
+  border-radius: 3px;
+  margin: 0 auto 15px;
+  padding: 8px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=01-color-switcher.101ee4ef.css.map */
