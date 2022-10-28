@@ -42,6 +42,8 @@ body > button {
 }
 
 .value {
+  text-align: center;
+  min-width: 50px;
   border-radius: 4px;
   outline: 1px solid gray;
   margin-bottom: 8px;

@@ -42,11 +42,16 @@ body > button {
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  
 }
 .value {
   font-family: 'Segoe UI';
   font-size: 40px;
+  text-align: center;
   outline: 1px solid  gray;
+
+  min-width: 50px;
   margin-bottom: 8px;
   border-radius: 4px;
   padding: 4px;
