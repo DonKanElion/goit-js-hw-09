@@ -6,7 +6,7 @@ const refs = {
 };
 
 refs.startBtn.addEventListener('click', () => {
-    timerId = setInterval(() => {
+    const timerId = setInterval(() => {
         getRandomHexColor();
         refs.startBtn.setAttribute('disabled', 'disabled');
       refs.stopBtn.removeAttribute('disabled');

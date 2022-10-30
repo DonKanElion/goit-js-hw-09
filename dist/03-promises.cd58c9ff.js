@@ -507,6 +507,11 @@ function createPromise(position, delay) {
     const shouldResolve = Math.random() > 0.3;
     shouldResolve;
 }
+createPromise(2, 1500).then(({ position , delay  })=>{
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+}).catch(({ position , delay  })=>{
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+});
 
 },{}]},["dDjGg","8tzFL"], "8tzFL", "parcelRequire7bc7")
 
