@@ -508,22 +508,31 @@ const refs = {
     inputDelay: document.querySelector("input[name=delay]"),
     inputStep: document.querySelector("input[name=step]"),
     inputAmount: document.querySelector("input[name=amount]"),
-    btn
+    submitBtn: document.querySelector("button[type=submit]")
 };
 // console.log(refs.inputDelay);
 // console.log(refs.inputStep);
 // console.log(refs.inputAmount);
-"span[data-days]";
+// console.log(refs.submitBtn);
 function createPromise(position, delay) {
     const shouldResolve = Math.random() > 0.3;
-    shouldResolve;
-} // createPromise(2, 1500)
- //   .then(({ position, delay }) => {
- //     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
- //   })
- //   .catch(({ position, delay }) => {
- //     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
- //   });
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            if (shouldResolve) resolve("\u0423\u0441\u043F\u0456\u0445!!!!!");
+            reject("\u0412\u0441\u0435 \u043F\u0440\u043E\u043F\u0430\u043B\u043E \u0446\u0435 reject!!1");
+        }, 2000);
+    });
+// if (shouldResolve) {
+//   // Fulfill
+// } else {
+//   // Reject
+// }
+}
+createPromise(2, 1500).then(({ position , delay  })=>{
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+}).catch(({ position , delay  })=>{
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+});
 
 },{}]},["dDjGg","8tzFL"], "8tzFL", "parcelRequire7bc7")
 
