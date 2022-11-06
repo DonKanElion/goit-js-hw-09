@@ -1,6 +1,7 @@
 // import Notiflix from 'notiflix';
 
 const refs = {
+  form: document.querySelector('.form'),
   inputDelay: document.querySelector('input[name=delay]'),
   inputStep: document.querySelector('input[name=step]'),
   inputAmount: document.querySelector('input[name=amount]'),
@@ -8,14 +9,28 @@ const refs = {
 
 }
 
+console.log('catch form: ', refs.form);
+
 // console.log(refs.inputDelay);
 // console.log(refs.inputStep);
 // console.log(refs.inputAmount);
 // console.log(refs.submitBtn);
 
-function createPromise(position, delay) {
+refs.form.addEventListener("submit", createPromise);
+console.log('catch form 2: ', refs.form.input);
 
+
+function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
+
+  console.log('Start: ', position, delay);
+
+  position = refs.inputAmount.value;
+  delay = refs.inputDelay.value;
+
+  console.log(refs.inputAmount.value);
+
+  console.log('End: ', position, delay);
 
   return new Promise((resolve, reject) => {
 

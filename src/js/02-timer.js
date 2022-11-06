@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 
 const refs = {
@@ -20,13 +21,11 @@ const options = {
     minuteIncrement: 1,
 
     onClose(selectedDates) {
-
          if (selectedDates[0] > new Date()){
           return refs.startBtn.removeAttribute('disabled');
           };
 
-      window.alert("Please choose a date in the future");
-
+      Notiflix.Notify.warning('Please choose a date in the future');
     },
     
     //   selectedDates[0] > new Date() ? 
@@ -42,7 +41,8 @@ const dataPickr = new flatpickr(refs.input, options);
 refs.startBtn.addEventListener('click', onStart);
 
 function onStart() {
-  console.log('WIN');
+
+  refs.startBtn.setAttribute('disabled', 'disabled');
   const startTime = dataPickr.selectedDates[0];
 
   setInterval(() => {
@@ -56,13 +56,12 @@ function onStart() {
     refs.min.textContent = time.minutes;
     refs.sec.textContent = time.seconds;
   }, 1000);
+  
 };
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0'); 
 }
-
-
  function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
