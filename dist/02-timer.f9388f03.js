@@ -569,7 +569,7 @@ function convertMs(ms) {
     };
 }
 
-},{"flatpickr":"llQu5","flatpickr/dist/flatpickr.min.css":"eVN6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","notiflix":"5WWYd"}],"llQu5":[function(require,module,exports) {
+},{"flatpickr":"llQu5","flatpickr/dist/flatpickr.min.css":"eVN6V","notiflix":"5WWYd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"llQu5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _options = require("./types/options");

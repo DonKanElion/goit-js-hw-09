@@ -1,58 +1,46 @@
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 
-const refs = {
-  form: document.querySelector('.form'),
-  inputDelay: document.querySelector('input[name=delay]'),
-  inputStep: document.querySelector('input[name=step]'),
-  inputAmount: document.querySelector('input[name=amount]'),
-  submitBtn: document.querySelector('button[type=submit]'),
 
+const formPromiseGenerator = document.querySelector('.form');
+
+formPromiseGenerator.addEventListener('submit', onFormSubmit);
+
+function onFormSubmit (event) {
+  event.preventDefault();
+
+  const formData = event.currentTarget.elements;
+
+  const firstDelay = formData.delay.value;
+  const delayStep = formData.step.value;
+  const amount = formData.amount.value;
+
+  for (let index = 1; index <= Number(amount); index += 1) {
+    const mainDelay = Number(firstDelay) + Number(delayStep) * (index - 1);
+    
+    createPromise(index, mainDelay).then(onMakeNotifySuccess).catch(onMakeNotifyError);
+  };
 }
-
-console.log('catch form: ', refs.form);
-
-// console.log(refs.inputDelay);
-// console.log(refs.inputStep);
-// console.log(refs.inputAmount);
-// console.log(refs.submitBtn);
-
-refs.form.addEventListener("submit", createPromise);
-console.log('catch form 2: ', refs.form.input);
-
 
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
+  const promise = new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
 
-  console.log('Start: ', position, delay);
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay })
+      } else {
+        reject({ position, delay })
+      }
+    }, delay);
+  })
 
-  position = refs.inputAmount.value;
-  delay = refs.inputDelay.value;
-
-  console.log(refs.inputAmount.value);
-
-  console.log('End: ', position, delay);
-
-  return new Promise((resolve, reject) => {
-
-        setTimeout(() => {
-          if(shouldResolve){
-           resolve('Успіх!!!!!');
-          }
-          reject('Все пропало це reject!!1');
-        }, 2000);
-  });
-
-  // if (shouldResolve) {
-  //   // Fulfill
-  // } else {
-  //   // Reject
-  // }
+  return promise;
 }
 
-createPromise(2, 1500)
-  .then(({ position, delay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  })
-  .catch(({ position, delay }) => {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  });
+function onMakeNotifySuccess({ position, delay }) {
+  Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+}
+
+function onMakeNotifyError({ position, delay }) {
+  Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+}
