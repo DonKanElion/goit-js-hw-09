@@ -534,10 +534,11 @@ refs.startBtn.addEventListener("click", onStart);
 function onStart() {
     refs.startBtn.setAttribute("disabled", "disabled");
     const startTime = dataPickr.selectedDates[0];
-    setInterval(()=>{
+    const timerId = setInterval(()=>{
         const currentTime = Date.now();
         const deltaTime = startTime - currentTime;
         const time = convertMs(deltaTime);
+        if (deltaTime <= 999) clearInterval(timerId);
         refs.days.textContent = time.days;
         refs.hours.textContent = time.hours;
         refs.min.textContent = time.minutes;
